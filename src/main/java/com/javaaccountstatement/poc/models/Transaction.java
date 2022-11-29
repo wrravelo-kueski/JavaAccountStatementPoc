@@ -1,10 +1,12 @@
 package com.javaaccountstatement.poc.models;
 
 import java.sql.Date;
+import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.javaaccountstatement.poc.utils.HexGenerator;
+import com.javaaccountstatement.poc.utils.NumberGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -129,6 +131,9 @@ public class Transaction {
 
   @Transient
   private String branchKey;
+
+  @Transient
+  private HashMap<String, Object> details;
 
   public Transaction() {
   }
@@ -442,5 +447,44 @@ public class Transaction {
 
   public String getBranchKey() {
     return HexGenerator.generateHex();
+  }
+
+  public HashMap<String, Object> getDetails() {
+    HashMap<String, Object> data = new HashMap<String, Object>();
+    data.put("encodedKey", HexGenerator.generateHex());
+    data.put("transactionChannelKey", HexGenerator.generateHex());
+    data.put("internalTransfer", false);
+    data.put("transactionChannel", generateDetailsTransactionalChannel());
+    return data;
+  }
+
+  private HashMap<String, Object> generateDetailsTransactionalChannel() {
+    HashMap<String, Object> data = new HashMap<String, Object>();
+    data.put("encodedKey", HexGenerator.generateHex());
+    data.put("id", "CONEKTA_DIRECT_DEBIT");
+    data.put("name", "Conekta Direct Debit");
+    data.put("createdByUserKey", HexGenerator.generateHex());
+    data.put("creationDate", new java.util.Date());
+    data.put("index", NumberGenerator.randomInteger(1000));
+    data.put("activated", true);
+    data.put("savingsConstraintsUsage", "UNCONSTRAINED_USAGE");
+    data.put("savingsConstraints", generateSavingsContraints());
+    data.put("usageRights", generateUsageRights());
+    return data;
+  }
+
+  private HashMap<String, Object> generateSavingsContraints() {
+    HashMap<String, Object> data = new HashMap<String, Object>();
+    data.put("encodedKey", HexGenerator.generateHex());
+    data.put("filterConstraints", new String[0]);
+    return data;
+  }
+
+  private HashMap<String, Object> generateUsageRights() {
+    HashMap<String, Object> data = new HashMap<String, Object>();
+    data.put("encodedKey", HexGenerator.generateHex());
+    data.put("isAccessibleByAllUsers", true);
+    data.put("roles", new String[0]);
+    return data;
   }
 }

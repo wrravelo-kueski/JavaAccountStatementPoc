@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaaccountstatement.poc.models.FinanceProduct;
 import com.javaaccountstatement.poc.repositories.FinanceProductRepository;
-import com.javaaccountstatement.poc.repositories.UserRepository;
 
 @RestController
 @RequestMapping("finance_products")

@@ -2,79 +2,138 @@ package com.javaaccountstatement.poc.models;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.javaaccountstatement.poc.utils.HexGenerator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "transactions")
 public class Transaction {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @JsonIgnore
   private int id;
+
   private Date created_at;
+
   private Date updated_at;
+
+  @JsonProperty("type")
   private String transaction_type;
+
   @Column(name = "\"creationDate\"")
   private Date creationDate;
+
   @Column(name = "\"entryDate\"")
   private Date entryDate;
+
   @Column(name = "\"valueDate\"")
   private Date valueDate;
+
   @Column(name = "\"bookingDate\"")
   private Date bookingDate;
+
   @Column(name = "\"transactionId\"")
   private int transactionId;
+
   @Column(name = "\"amount\"")
   private int amount;
+
   @Column(name = "\"principalPaid\"")
   private int principalPaid;
+
   @Column(name = "\"interestPaid\"")
   private int interestPaid;
+
   @Column(name = "\"interestFromArrearsAmount\"")
   private int interestFromArrearsAmount;
+
   @Column(name = "\"deferredInterestAmount\"")
   private int deferredInterestAmount;
+
   @Column(name = "\"feesPaid\"")
   private int feesPaid;
+
   @Column(name = "\"penaltyPaid\"")
   private int penaltyPaid;
+
   @Column(name = "\"taxOnInterestPaid\"")
   private int taxOnInterestPaid;
+
   @Column(name = "\"taxOnInterestFromArrearsAmount\"")
   private int taxOnInterestFromArrearsAmount;
+
   @Column(name = "\"taxOnFeesAmount\"")
   private int taxOnFeesAmount;
+
   @Column(name = "\"taxOnPenaltyAmount\"")
   private int taxOnPenaltyAmount;
+
   @Column(name = "\"deferredTaxOnInterestAmount\"")
   private int deferredTaxOnInterestAmount;
+
   @Column(name = "\"advancePosition\"")
   private int advancePosition;
+
   @Column(name = "\"arrearsPosition\"")
   private int arrearsPosition;
+
   @Column(name = "\"expectedPrincipalRedraw\"")
   private int expectedPrincipalRedraw;
+
   @Column(name = "\"balance\"")
   private int balance;
+
   @Column(name = "\"redrawBalance\"")
   private int redrawBalance;
+
   @Column(name = "\"principalBalance\"")
   private int principalBalance;
+
   @Column(name = "\"interestRate\"")
   private int interestRate;
+
   @Column(name = "\"organizationCommissionAmount\"")
   private int organizationCommissionAmount;
+
   @Column(name = "\"fundersInterestAmount\"")
   private int fundersInterestAmount;
+
+  @JsonProperty("userKey")
+  @Column(name = "\"user_id\"")
+  private int user_id;
+
+  @JsonProperty("productTypeKey")
+  @Column(name = "\"finance_product_id\"")
+  private int finance_product_id;
+
+  @Transient
+  private String encodedKey;
+
+  @Transient
+  private String[] customerInformation;
+
+  @Transient
+  private String comment;
+
+  @Transient
+  private String parentAccountKey;
+
+  @Transient
+  private String branchKey;
 
   public Transaction() {
   }
 
-  public Transaction(int id, Date created_at, Date updated_at, String transaction_type, Date creationDate, Date entryDate, Date valueDate, Date bookingDate, int transactionId, int amount, int principalPaid, int interestPaid, int interestFromArrearsAmount, int deferredInterestAmount, int feesPaid, int penaltyPaid, int taxOnInterestPaid, int taxOnInterestFromArrearsAmount, int taxOnFeesAmount, int taxOnPenaltyAmount, int deferredTaxOnInterestAmount, int advancePosition, int arrearsPosition, int expectedPrincipalRedraw, int balance, int redrawBalance, int principalBalance, int interestRate, int organizationCommissionAmount, int fundersInterestAmount) {
+  public Transaction(int id, Date created_at, Date updated_at, String transaction_type, Date creationDate, Date entryDate, Date valueDate, Date bookingDate, int transactionId, int amount, int principalPaid, int interestPaid, int interestFromArrearsAmount, int deferredInterestAmount, int feesPaid, int penaltyPaid, int taxOnInterestPaid, int taxOnInterestFromArrearsAmount, int taxOnFeesAmount, int taxOnPenaltyAmount, int deferredTaxOnInterestAmount, int advancePosition, int arrearsPosition, int expectedPrincipalRedraw, int balance, int redrawBalance, int principalBalance, int interestRate, int organizationCommissionAmount, int fundersInterestAmount, int user_id, int finance_product_id) {
     this.id = id;
     this.created_at = created_at;
     this.updated_at = updated_at;
@@ -105,6 +164,8 @@ public class Transaction {
     this.interestRate = interestRate;
     this.organizationCommissionAmount = organizationCommissionAmount;
     this.fundersInterestAmount = fundersInterestAmount;
+    this.user_id = user_id;
+    this.finance_product_id = finance_product_id;
   }
 
   public int getId() {
@@ -347,4 +408,39 @@ public class Transaction {
     this.fundersInterestAmount = fundersInterestAmount;
   }
 
+  public int getUser_id() {
+    return this.user_id;
+  }
+
+  public void setUser_id(int user_id) {
+    this.user_id = user_id;
+  }
+
+  public int getFinance_product_id() {
+    return this.finance_product_id;
+  }
+
+  public void setFinance_product_id(int finance_product_id) {
+    this.finance_product_id = finance_product_id;
+  }
+
+  public String getEncodedKey() {
+    return HexGenerator.generateHex();
+  }
+
+  public String[] getCustomerInformation() {
+    return new String[0];
+  }
+
+  public String getComment() {
+    return "{ source_transaction_id: " + id + "}";
+  }
+
+  public String getParentAccountKey() {
+    return HexGenerator.generateHex();
+  }
+
+  public String getBranchKey() {
+    return HexGenerator.generateHex();
+  }
 }

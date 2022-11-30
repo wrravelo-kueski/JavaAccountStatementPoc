@@ -1,7 +1,6 @@
 package com.javaaccountstatement.poc.models;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

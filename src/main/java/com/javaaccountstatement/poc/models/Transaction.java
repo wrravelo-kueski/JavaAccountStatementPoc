@@ -1,6 +1,7 @@
 package com.javaaccountstatement.poc.models;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,24 +25,24 @@ public class Transaction {
   @JsonIgnore
   private int id;
 
-  private Date created_at;
+  private Timestamp created_at;
 
-  private Date updated_at;
+  private Timestamp updated_at;
 
   @JsonProperty("type")
   private String transaction_type;
 
   @Column(name = "\"creationDate\"")
-  private Date creationDate;
+  private Timestamp creationDate;
 
   @Column(name = "\"entryDate\"")
-  private Date entryDate;
+  private Timestamp entryDate;
 
   @Column(name = "\"valueDate\"")
-  private Date valueDate;
+  private Timestamp valueDate;
 
   @Column(name = "\"bookingDate\"")
-  private Date bookingDate;
+  private Timestamp bookingDate;
 
   @Column(name = "\"transactionId\"")
   private int transactionId;
@@ -138,7 +139,7 @@ public class Transaction {
   public Transaction() {
   }
 
-  public Transaction(int id, Date created_at, Date updated_at, String transaction_type, Date creationDate, Date entryDate, Date valueDate, Date bookingDate, int transactionId, int amount, int principalPaid, int interestPaid, int interestFromArrearsAmount, int deferredInterestAmount, int feesPaid, int penaltyPaid, int taxOnInterestPaid, int taxOnInterestFromArrearsAmount, int taxOnFeesAmount, int taxOnPenaltyAmount, int deferredTaxOnInterestAmount, int advancePosition, int arrearsPosition, int expectedPrincipalRedraw, int balance, int redrawBalance, int principalBalance, int interestRate, int organizationCommissionAmount, int fundersInterestAmount, int user_id, int financeProductId) {
+  public Transaction(int id, Timestamp created_at, Timestamp updated_at, String transaction_type, Timestamp creationDate, Timestamp entryDate, Timestamp valueDate, Timestamp bookingDate, int transactionId, int amount, int principalPaid, int interestPaid, int interestFromArrearsAmount, int deferredInterestAmount, int feesPaid, int penaltyPaid, int taxOnInterestPaid, int taxOnInterestFromArrearsAmount, int taxOnFeesAmount, int taxOnPenaltyAmount, int deferredTaxOnInterestAmount, int advancePosition, int arrearsPosition, int expectedPrincipalRedraw, int balance, int redrawBalance, int principalBalance, int interestRate, int organizationCommissionAmount, int fundersInterestAmount, int user_id, int financeProductId) {
     this.id = id;
     this.created_at = created_at;
     this.updated_at = updated_at;
@@ -181,19 +182,19 @@ public class Transaction {
     this.id = id;
   }
 
-  public Date getCreated_at() {
+  public Timestamp getCreated_at() {
     return this.created_at;
   }
 
-  public void setCreated_at(Date created_at) {
+  public void setCreated_at(Timestamp created_at) {
     this.created_at = created_at;
   }
 
-  public Date getUpdated_at() {
+  public Timestamp getUpdated_at() {
     return this.updated_at;
   }
 
-  public void setUpdated_at(Date updated_at) {
+  public void setUpdated_at(Timestamp updated_at) {
     this.updated_at = updated_at;
   }
 
@@ -205,35 +206,35 @@ public class Transaction {
     this.transaction_type = transaction_type;
   }
 
-  public Date getCreationDate() {
+  public Timestamp getCreationDate() {
     return this.creationDate;
   }
 
-  public void setCreationDate(Date creationDate) {
+  public void setCreationDate(Timestamp creationDate) {
     this.creationDate = creationDate;
   }
 
-  public Date getEntryDate() {
+  public Timestamp getEntryDate() {
     return this.entryDate;
   }
 
-  public void setEntryDate(Date entryDate) {
+  public void setEntryDate(Timestamp entryDate) {
     this.entryDate = entryDate;
   }
 
-  public Date getValueDate() {
+  public Timestamp getValueDate() {
     return this.valueDate;
   }
 
-  public void setValueDate(Date valueDate) {
+  public void setValueDate(Timestamp valueDate) {
     this.valueDate = valueDate;
   }
 
-  public Date getBookingDate() {
+  public Timestamp getBookingDate() {
     return this.bookingDate;
   }
 
-  public void setBookingDate(Date bookingDate) {
+  public void setBookingDate(Timestamp bookingDate) {
     this.bookingDate = bookingDate;
   }
 
@@ -464,7 +465,7 @@ public class Transaction {
     data.put("id", "CONEKTA_DIRECT_DEBIT");
     data.put("name", "Conekta Direct Debit");
     data.put("createdByUserKey", HexGenerator.generateHex());
-    data.put("creationDate", new java.util.Date());
+    data.put("creationDate", new Timestamp(System.currentTimeMillis()));
     data.put("index", NumberGenerator.randomInteger(1000));
     data.put("activated", true);
     data.put("savingsConstraintsUsage", "UNCONSTRAINED_USAGE");

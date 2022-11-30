@@ -115,7 +115,7 @@ public class Transaction {
 
   @JsonProperty("productTypeKey")
   @Column(name = "\"finance_product_id\"")
-  private int finance_product_id;
+  private int financeProductId;
 
   @Transient
   private String encodedKey;
@@ -138,7 +138,7 @@ public class Transaction {
   public Transaction() {
   }
 
-  public Transaction(int id, Date created_at, Date updated_at, String transaction_type, Date creationDate, Date entryDate, Date valueDate, Date bookingDate, int transactionId, int amount, int principalPaid, int interestPaid, int interestFromArrearsAmount, int deferredInterestAmount, int feesPaid, int penaltyPaid, int taxOnInterestPaid, int taxOnInterestFromArrearsAmount, int taxOnFeesAmount, int taxOnPenaltyAmount, int deferredTaxOnInterestAmount, int advancePosition, int arrearsPosition, int expectedPrincipalRedraw, int balance, int redrawBalance, int principalBalance, int interestRate, int organizationCommissionAmount, int fundersInterestAmount, int user_id, int finance_product_id) {
+  public Transaction(int id, Date created_at, Date updated_at, String transaction_type, Date creationDate, Date entryDate, Date valueDate, Date bookingDate, int transactionId, int amount, int principalPaid, int interestPaid, int interestFromArrearsAmount, int deferredInterestAmount, int feesPaid, int penaltyPaid, int taxOnInterestPaid, int taxOnInterestFromArrearsAmount, int taxOnFeesAmount, int taxOnPenaltyAmount, int deferredTaxOnInterestAmount, int advancePosition, int arrearsPosition, int expectedPrincipalRedraw, int balance, int redrawBalance, int principalBalance, int interestRate, int organizationCommissionAmount, int fundersInterestAmount, int user_id, int financeProductId) {
     this.id = id;
     this.created_at = created_at;
     this.updated_at = updated_at;
@@ -170,7 +170,7 @@ public class Transaction {
     this.organizationCommissionAmount = organizationCommissionAmount;
     this.fundersInterestAmount = fundersInterestAmount;
     this.user_id = user_id;
-    this.finance_product_id = finance_product_id;
+    this.financeProductId = financeProductId;
   }
 
   public int getId() {
@@ -421,14 +421,14 @@ public class Transaction {
     this.user_id = user_id;
   }
 
-  public int getFinance_product_id() {
-    return this.finance_product_id;
+  public int getFinanceProductId() {
+    return this.financeProductId;
   }
 
-  public void setFinance_product_id(int finance_product_id) {
-    this.finance_product_id = finance_product_id;
+  public void setFinanceProductId(int financeProductId) {
+    this.financeProductId = financeProductId;
   }
-
+  
   public String getEncodedKey() {
     return HexGenerator.generateHex();
   }

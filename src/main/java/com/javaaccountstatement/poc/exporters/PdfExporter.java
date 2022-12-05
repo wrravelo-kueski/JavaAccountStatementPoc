@@ -3,7 +3,6 @@ package com.javaaccountstatement.poc.exporters;
 import java.io.FileOutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.Date;
 import java.util.List;
 
 import com.itextpdf.text.*;
@@ -12,7 +11,6 @@ import com.javaaccountstatement.poc.models.FinanceProduct;
 import com.javaaccountstatement.poc.models.Transaction;
 import com.javaaccountstatement.poc.models.User;
 import com.javaaccountstatement.poc.repositories.TransactionRepository;
-import com.javaaccountstatement.poc.utils.DateUtil;
 
 public class PdfExporter {
 

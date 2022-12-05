@@ -35,3 +35,9 @@ mvn install
 ```bash
 mvn spring-boot:run
 ```
+
+## Run PDF task
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.arguments="benchmark"
+```

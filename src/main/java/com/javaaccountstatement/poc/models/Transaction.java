@@ -21,7 +21,7 @@ import jakarta.persistence.Transient;
 public class Transaction {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @JsonIgnore
+  @JsonProperty("transactionId")
   private int id;
 
   private Timestamp created_at;
@@ -43,6 +43,7 @@ public class Transaction {
   @Column(name = "\"bookingDate\"")
   private Timestamp bookingDate;
 
+  @JsonIgnore
   @Column(name = "\"transactionId\"")
   private int transactionId;
 

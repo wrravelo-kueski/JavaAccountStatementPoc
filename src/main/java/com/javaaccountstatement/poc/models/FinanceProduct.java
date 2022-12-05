@@ -16,16 +16,18 @@ public class FinanceProduct {
   private int id;
   private Date created_at;
   private Date updated_at;
+  private int user_id;
 
   public FinanceProduct() {
   }
 
-  public FinanceProduct(int id, Date created_at, Date updated_at) {
+  public FinanceProduct(int id, Date created_at, Date updated_at, int user_id) {
     this.id = id;
     this.created_at = created_at;
     this.updated_at = updated_at;
+    this.user_id = user_id;
   }
-
+  
   public int getId() {
     return this.id;
   }
@@ -49,4 +51,13 @@ public class FinanceProduct {
   public void setUpdated_at(Date updated_at) {
     this.updated_at = updated_at;
   }
+
+  public int getUser_id() {
+    return this.user_id;
+  }
+
+  public void setUser_id(int user_id) {
+    this.user_id = user_id;
+  }
+
 }
